@@ -1,0 +1,14 @@
+docker rm $(docker ps -aq)
+----------------------------------
+docker rmi $(docker images -a -q)
+----------------------------------
+docker rm con1 -f
+----------------------------------
+docker exec -it studentapp bash
+----------------------------------
+docker run --name con1 -d -p 8080:8080 student-con1
+----------------------------------
+docker build -t student-con1 .
+----------------------------------
+
+----------------------------------
