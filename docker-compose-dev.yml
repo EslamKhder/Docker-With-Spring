@@ -1,0 +1,14 @@
+version: "3"
+services:
+  student:
+    container_name: student-con
+    build: .
+    volumes:
+      - .:/student:ro
+    ports:
+      - "9090:9090"
+    environment:
+      - PORTS=9090
+      - PHASE_TYPE=DEV
+    env_file:
+      - ./.env

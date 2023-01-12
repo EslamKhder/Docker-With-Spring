@@ -3,9 +3,10 @@ services:
   student:
     container_name: student-con
     build: .
-    volumes:
-      - .:/student:ro
     ports:
-      - "9090:9090"
+      - "7070:7070"
+    environment:
+      - PORTS=7070
+      - PHASE_TYPE=PRO
     env_file:
       - ./.env

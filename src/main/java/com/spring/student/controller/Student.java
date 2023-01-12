@@ -15,8 +15,14 @@ public class Student {
     @Value("${age}")
     private String age;
 
+    @Value("${PHASE}")
+    private String phase;
+
+    @Value("${server.port}")
+    private String port;
+
     @GetMapping("/student")
     public String student(){
-        return "Hi Student " + name + " With age " + age;
+        return "Hi Student " + name + " With age " + age + " WITH " + phase + " With " + port;
     }
 }
