@@ -1,8 +1,9 @@
 version: "3"
 services:
   student:
-    container_name: student-con
-    build: .
+    build:
+      context: .
+      target: development
     volumes:
       - .:/student:ro
     ports:
@@ -10,5 +11,3 @@ services:
     environment:
       - PORTS=9090
       - PHASE_TYPE=DEV
-    env_file:
-      - ./.env

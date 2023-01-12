@@ -8,12 +8,18 @@
 #EXPOSE 8080
 #COPY --from=build /student/target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
 #ENTRYPOINT ["java","-jar","/student/Student.jar"]
-
-FROM openjdk:11-jre-slim
 #COPY src /student/src
 #COPY pom.xml /student
-#COPY /target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
-COPY . /student
 #EXPOSE 9090
 #COPY --from=build /student/target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
+#COPY /target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
+FROM openjdk:11-jre-slim as BASE
+
+
+FROM BASE as development
+COPY . /student
 ENTRYPOINT ["java","-jar","/student/target/Student-0.0.1-SNAPSHOT.jar"]
+
+FROM BASE as production
+COPY ./target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
+ENTRYPOINT ["java","-jar","/student/Student.jar"]

@@ -1,0 +1,6 @@
+version: "3"
+services:
+  student:
+    container_name: student-con
+    env_file:
+      - ./.env
