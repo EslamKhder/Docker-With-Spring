@@ -20,9 +20,11 @@ services:
     image: mysql
     restart: always
     volumes:
-    - /home/user/Desktop/db:/var/lib/mysql
+    - db:/var/lib/mysql
     environment:
       MYSQL_DATABASE: club
       MYSQL_ROOT_PASSWORD: root
     ports:
     - "3307:3306"
+volumes:
+  db:
