@@ -11,3 +11,18 @@ services:
     environment:
       - PORTS=9090
       - PHASE_TYPE=DEV
+      - MYSQL_HOST=mysqldb
+      - MYSQL_PORT=3306
+      - MYSQL_DB=club
+      - MYSQL_USER_NAME=root
+      - MYSQL_PASSWORD=root
+  mysqldb:
+    image: mysql
+    restart: always
+    volumes:
+    - /home/user/Desktop/db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: club
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+    - "3307:3306"

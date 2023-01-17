@@ -13,13 +13,13 @@
 #EXPOSE 9090
 #COPY --from=build /student/target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
 #COPY /target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
-FROM openjdk:11-jre-slim as BASE
+FROM openjdk:11-jre-slim as base
 
 
-FROM BASE as development
+FROM base as development
 COPY . /student
 ENTRYPOINT ["java","-jar","/student/target/Student-0.0.1-SNAPSHOT.jar"]
 
-FROM BASE as production
+FROM base as production
 COPY ./target/Student-0.0.1-SNAPSHOT.jar /student/Student.jar
 ENTRYPOINT ["java","-jar","/student/Student.jar"]
